@@ -1,0 +1,7 @@
+.video {
+  margin-top: 80px;
+  margin-left: 40px;
+}
+.video video {
+  border-radius: 5px;
+}
