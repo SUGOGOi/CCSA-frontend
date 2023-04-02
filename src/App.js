@@ -13,7 +13,9 @@ import Request from './components/Request/Request';
 import About from './components/About/About';
 import Dashboard from './components/Admin/Dashboard/Dashboard';
 import CreateCourse from './components/Admin/CreateCourse/CreateCourse';
+import UploadNotes from './components/Admin/UploadNotes/UploadNotes';
 import AdminCourse from './components/Admin/AdminCourse/AdminCourse';
+import AdminNotes from './components/Admin/AdminNotes/AdminNotes';
 import Users from './components/Admin/Users/Users';
 import Subscribe from './components/Payments/Subscribe';
 import NotFound from './components/Layout/NotFound/NotFound';
@@ -56,7 +58,9 @@ function App() {
         {/* Admin Routes */}
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/createcourse" element={<CreateCourse />} />
+        <Route path="/admin/uploadnotes" element={<UploadNotes />} />
         <Route path="/admin/courses" element={<AdminCourse />} />
+        <Route path="/admin/notes" element={<AdminNotes />} />
         <Route path="/admin/users" element={<Users />} />
       </Routes>
       <Footer />
