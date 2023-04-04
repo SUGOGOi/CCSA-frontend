@@ -1,18 +1,32 @@
-import { Grid, Box, Heading, TableContainer, Table, TableCaption, Thead, Th, Tr, Button, Td, Tbody, Image } from '@chakra-ui/react'
+import { Grid, Box, Heading, TableContainer, Table, TableCaption, Thead, Th, Tr, Button, Td, Tbody, Image, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import { RiDeleteBin7Fill } from 'react-icons/ri'
 import cursor from "../../../assets/images/cursor.png"
 import Sidebar from "../Sidebar"
+import CourseModal from './CourseModal'
 
 
 const AdminCourse = () => {
 
+    const { isOpen, onClose, onOpen } = useDisclosure()
+
     const courseDetailHandler = (userId) => {
-        console.log(userId)
+        onOpen();
     }
 
     const deleteButtonhandler = (userId) => {
         console.log(userId)
+    }
+
+    const deleteLectureHandler = (courseId, lectureId) => {
+        console.log(courseId);
+        console.log(lectureId)
+
+    }
+
+    const addLecturehandler = (e, courseId, title, description, video) => {
+        e.preventDefault();
+
     }
 
     const courses = [{
@@ -28,6 +42,8 @@ const AdminCourse = () => {
 
     }]
 
+
+
     return <Grid css={{ cursor: `url(${cursor}), default` }} minH={"100vh"} templateColumns={["1fr", "5fr 1fr"]} >
         <Box
             padding={["0", "16"]}
@@ -35,7 +51,7 @@ const AdminCourse = () => {
         >
             <Heading
                 textTransform={'uppercase'}
-                children="All Users"
+                children="All Courses"
                 my={"16"}
                 textAlign={["center", "left"]}
             />
@@ -64,6 +80,13 @@ const AdminCourse = () => {
                     </Tbody>
                 </Table>
             </TableContainer>
+            <CourseModal isOpen={isOpen}
+                onClose={onClose}
+                id={"fsdfjsfd"}
+                courseTitle="React Course"
+                deleteLectureHandler={deleteLectureHandler}
+                addLecturehandler={addLecturehandler}
+            />
         </Box>
         <Sidebar />
 
