@@ -3,7 +3,8 @@ import { ColorModeSwitcher } from "../../../ColorModeSwitcher"
 import { Button, Drawer, DrawerContent, DrawerOverlay, DrawerBody, DrawerHeader, useDisclosure, VStack, HStack } from '@chakra-ui/react'
 import { RiDashboardFill, RiLogoutBoxLine, RiMenu5Fill } from "react-icons/ri"
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../../redux/action/userAction'
 
 
 
@@ -14,10 +15,12 @@ import { useSelector } from 'react-redux'
 const Header = ({isAuthenticated = false,user}) => {
 
     const { isOpen, onClose, onOpen } = useDisclosure()
+
+    const dispatch = useDispatch();
   
     const logoutHandler = () => {
         onClose()
-        console.log("Logout")
+        dispatch(logout())
     }
 
     return (<>

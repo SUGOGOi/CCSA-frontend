@@ -38,3 +38,23 @@ import axios from "axios";
         
     }
 }
+
+
+export  const logout = () => async(dispatch) =>{
+    try {
+        dispatch({type:"logoutRequest"});
+
+    const {data} = await axios.get(`${server}/logout`,{
+        headers:{
+            "Content-type":"application/json",
+        },
+        withCredentials:true,
+    })
+
+
+    dispatch({type:"logoutSuccess",payload:data.message})
+    } catch (error) {
+        dispatch({type:"logoutFail",payload:error.response.data.message})
+        
+    }
+}

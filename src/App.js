@@ -28,6 +28,7 @@ import UpdateProfile from './components/Profile/UpdateProfile';
 import { useDispatch, useSelector } from 'react-redux';
 import toast,{Toaster} from "react-hot-toast"
 import { loaduser } from './redux/action/userAction';
+import {ProtectedRoute} from "protected-route-react"
 
 function App() {
   // window.addEventListener('contextmenu', e => {
@@ -37,6 +38,10 @@ function App() {
 
   const {isAuthenticated,user,message,error} = useSelector(state=>state.user);
   const dispatch = useDispatch();
+
+  useEffect(() =>{
+    dispatch(loaduser())
+  },[dispatch])
 
 
   useEffect(() =>{
@@ -50,9 +55,6 @@ function App() {
     }
   },[dispatch,error,message])
 
-  useEffect(() =>{
-    dispatch(loaduser())
-  },[dispatch])
 
 
 
@@ -66,9 +68,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/request" element={<Request />} />
         <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<ProtectedRoute isAuthenticated={!isAuthenticated}  redirect={"/profile"} > <Login /></ProtectedRoute>} />
 
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ProtectedRoute isAuthenticated={isAuthenticated} redirect={"/login"}  ><Profile/></ProtectedRoute>} />
         <Route path="/changepassword" element={<ChangePassword />} />
         <Route path="/updateprofile" element={<UpdateProfile />} />
 
